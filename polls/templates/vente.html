@@ -36,7 +36,7 @@
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" aria-controls="dataTable">
         <div class="input-group-append">
           <button class="btn btn-primary" type="button">
             <i class="fas fa-search"></i>
@@ -117,7 +117,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#logoutModal">Vendre</button>
-            
+            <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#logoutModal1">Confirmer vente</button>
           </li>
          
         </ol>
@@ -204,17 +204,59 @@
         <div class="modal-body">
           <form action="" method="POST">
             {% csrf_token%}
+            <div class="form-group">
+              <label>Catégorie</label>
+              <select class="form-control" name="categorie">
+                {% for categorie in categories %}
+                <option value="{{ categorie.id }}">{{ categorie.libelle }}</option>
+                {% endfor %}  
+              </select>
+            </div>
           <div class="form-group">
-            <label>Catégorie</label>
+            <label>Produit</label>
             <select class="form-control" name="produit">
-              <option value="1">Cimment</option>
-              <option value="2">Fer</option>   
+              <option value="1">Cimment fortia</option>
+              <option value="2">Cimment dangote</option>
+              <option value="3">Fer 10</option>   
+              <option value="4">Fer 12</option>   
             </select>
           </div>
+          
           <div class="form-group">
             <label>Quantité</label>
             <input type="number" class="form-control" placeholder="Quantité" name="quantite" required>
           </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Retour</button>
+            <button type="submit" class="btn btn-primary" >Valider</button>
+          </div>
+        </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="logoutModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST">
+            {% csrf_token%}
+            <div class="form-group">
+              <label>Client</label>
+              <select class="form-control" name="client">
+                <option value="1">pascal</option>
+                <option value="2">lenovo</option>   
+              </select>
+            </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Retour</button>
             <button type="submit" class="btn btn-primary" >Valider</button>

@@ -20,7 +20,6 @@ class Produit(models.Model):
     updated_at = models.DateTimeField(default=timezone.now,blank=True,null=True)
     
 
-
 class Vente(models.Model):
     quantite = models.FloatField()
     produit = models.ForeignKey(Produit,on_delete=models.CASCADE,blank=True, null=True)

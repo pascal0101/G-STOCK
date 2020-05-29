@@ -11,6 +11,7 @@ def login(request):
 
 def vente(request):
     ventes = Vente.objects.all()
+    categories = Categorie.objects.all()
     if request.method == 'POST':
         produit_id = request.POST.get('produit')
         quantite = request.POST.get('quantite')
@@ -22,7 +23,7 @@ def vente(request):
         c.save()
         print("form is ok")
         
-    return render(request,'vente.html',{'ventes':ventes})
+    return render(request,'vente.html',{'ventes':ventes, 'categories':categories})
 
 
 def rapport(request):
